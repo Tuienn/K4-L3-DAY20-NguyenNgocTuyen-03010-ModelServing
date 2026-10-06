@@ -1,0 +1,42 @@
+
+────────────────────────────────────────────────────────────────
+  llama-server on :8080
+────────────────────────────────────────────────────────────────
+  binary   : llama-server  (llama.cpp b10488)
+  model    : Qwen3.5-0.8B-Q4_K_M.gguf  [Q4_K_M]
+  threads  : 12    ngl: 0    ctx: 2048
+  slots    : 4 (continuous batching on)
+  endpoints: http://localhost:8080/v1/chat/completions
+             http://localhost:8080/metrics   <- Prometheus, rubric item 7
+             http://localhost:8080/slots     <- per-slot state
+
+  /home/tuienn/User/VinAI/Labs/2026-10-06/K4-L3-DAY20-NguyenNgocTuyen-03010-ModelServing/runtime/b10488/llama-b10488/llama-server -m /home/tuienn/User/VinAI/Labs/2026-10-06/K4-L3-DAY20-NguyenNgocTuyen-03010-ModelServing/models/Qwen3.5-0.8B-Q4_K_M.gguf --host 127.0.0.1 --port 8080 -t 12 -ngl 0 --ctx-size 2048 --parallel 4 --cont-batching --metrics --reasoning off
+
+0.00.005.718 I cmn  common_param: common_params_print_info: verbosity = 3 (adjust with the `-lv N` CLI arg)
+0.00.006.039 W srv  llama_server: -----------------
+0.00.006.040 W srv  llama_server: CORS is set to allow all origins ('*') and no API key is set
+0.00.006.040 W srv  llama_server: this can be a security risk (cross-origin attacks)
+0.00.006.040 W srv  llama_server: more info: https://github.com/ggml-org/llama.cpp/pull/25655
+0.00.006.040 W srv  llama_server: -----------------
+0.00.007.486 I srv    load_model: loading model '/home/tuienn/User/VinAI/Labs/2026-10-06/K4-L3-DAY20-NguyenNgocTuyen-03010-ModelServing/models/Qwen3.5-0.8B-Q4_K_M.gguf'
+0.01.166.150 I cmn          init: llama threadpool init, n_threads = 12
+0.01.287.150 I srv    load_model: initializing, n_slots = 4, n_ctx_slot = 512, kv_unified = 'false'
+0.01.291.490 I srv  llama_server: model loaded
+0.01.291.495 I srv  llama_server: listening on http://127.0.0.1:8080
+0.01.291.496 W srv  llama_server: NOTICE: server default port will be changed to :9931 in a future release
+0.01.291.496 W srv  llama_server:         ref: https://github.com/ggml-org/llama.cpp/pull/26508
+0.12.721.861 I slot get_availabl: id  3 | task -1 | selected slot by LRU, t_last = -1
+0.12.721.932 I slot launch_slot_: id  3 | task 1 | processing task, is_child = 0
+0.14.433.755 I slot print_timing: id  3 | task 1 | prompt eval time =     240.96 ms /    37 tokens (    6.51 ms per token,   153.55 tokens per second)
+0.14.433.759 I slot print_timing: id  3 | task 1 |        eval time =    1470.82 ms /    33 tokens (   45.96 ms per token,    21.76 tokens per second)
+0.14.433.760 I slot print_timing: id  3 | task 1 |       total time =    1711.78 ms /    70 tokens
+0.14.433.764 I slot print_timing: id  3 | task 1 |    graphs reused =         32
+0.14.433.813 I slot      release: id  3 | task 1 | stop processing: n_tokens = 69, truncated = 0
+0.36.191.208 I slot get_availabl: id  2 | task -1 | selected slot by LRU, t_last = -1
+0.36.191.257 I slot launch_slot_: id  2 | task 38 | processing task, is_child = 0
+0.36.216.185 I slot get_availabl: id  1 | task -1 | selected slot by LRU, t_last = -1
+0.36.216.260 I slot launch_slot_: id  1 | task 39 | processing task, is_child = 0
+0.36.216.271 I slot get_availabl: id  0 | task -1 | selected slot by LRU, t_last = -1
+0.36.216.287 I slot launch_slot_: id  0 | task 40 | processing task, is_child = 0
+0.36.216.293 I slot get_availabl: id  3 | task -1 | selected slot by LRU, t_last = 1094637170
+0.36.216.323 I slot launch_slot_: id  3 | task 41 | processing task, is_child = 0
