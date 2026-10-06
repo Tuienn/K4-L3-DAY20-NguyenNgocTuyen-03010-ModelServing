@@ -1,0 +1,30 @@
+==> Verifying submission readiness in /home/tuienn/User/VinAI/Labs/2026-10-06/K4-L3-DAY20-NguyenNgocTuyen-03010-ModelServing
+
+Setup (00)
+  ✓ Hardware probe: hardware.json
+  ✓ Model manifest: Qwen3.5 0.8B (Q4_K_M + UD-Q2_K_XL)
+  ✓ Runtime: llama-server present (b10488)
+
+Measure (01)
+  ✓ Latency baseline: benchmarks/01-quickstart-results.md
+  ✓ Tuning sweep: benchmarks/01-tuning-tg128.md
+
+Serve (02)
+  ✓ Load run at 10 users: benchmarks/locust-10_stats.csv
+  ✓ Load run at 50 users: benchmarks/locust-50_stats.csv
+  ✓ Saturation reading: benchmarks/02-server-results.md
+  ✓ Continuous-batching evidence: benchmarks/02-server-batching-u50.md, benchmarks/02-server-metrics-u50.csv
+
+Integrate (03)
+  ✓ RAG pipeline run: benchmarks/03-integration-results.md
+
+Submission
+  ✓ Reflection: submission/REFLECTION.md filled in (1390 words)
+  ✗ Screenshots: 0 of 5 required — see submission/screenshots/README.md
+
+✗ Not ready — 1 item(s) to fix:
+
+  - Screenshots: 0 of 5 required — see submission/screenshots/README.md
+
+See docs/RUBRIC.md for what each item is worth. Re-run `make verify` when fixed.
+make: *** [Makefile:115: verify] Error 1
