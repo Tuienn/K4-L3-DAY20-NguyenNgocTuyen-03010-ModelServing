@@ -1,0 +1,22 @@
+────────────────────────────────────────────────────────────────
+  Platform : Linux 7.2.8-200.fc44.x86_64 (x86_64)
+  CPU      : 12th Gen Intel(R) Core(TM) i5-1240P
+             12 physical · 16 logical cores
+             extensions: AVX2
+  RAM      : 23.1 GB
+  GPU      : none detected (CPU only)
+────────────────────────────────────────────────────────────────
+
+  Model         : Qwen3.5 0.8B  [LAB_MODEL=qwen35-0.8b]
+                  unsloth/Qwen3.5-0.8B-GGUF  (~0.9 GB)
+                  primary  Qwen3.5-0.8B-Q4_K_M.gguf  (0.5 GB)
+                  compare  Qwen3.5-0.8B-UD-Q2_K_XL.gguf  (0.39 GB)
+                  chosen because: chosen with LAB_MODEL
+  Other option  : LAB_MODEL=gemma4-e2b  ->  Gemma 4 E2B, ~5.2 GB, needs 8.0 GB RAM
+  llama.cpp     : prebuilt release b10488  (llama-b10488-bin-ubuntu-x64.tar.gz)
+  GPU offload   : OFF -- no accelerator detected
+  source build  : CPU only  (bonus B1 -- not used by the base track)
+  Tracks open   : 01-measure, 02-serve, 03-integrate, bonus/sweeps
+────────────────────────────────────────────────────────────────
+
+Saved hardware.json -- every other track reads this.

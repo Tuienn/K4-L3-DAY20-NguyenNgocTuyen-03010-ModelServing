@@ -1,0 +1,59 @@
+────────────────────────────────────────────────────────────────
+  Platform : Linux 7.2.8-200.fc44.x86_64 (x86_64)
+  CPU      : 12th Gen Intel(R) Core(TM) i5-1240P
+             12 physical · 16 logical cores
+             extensions: AVX2
+  RAM      : 23.1 GB
+  GPU      : none detected (CPU only)
+────────────────────────────────────────────────────────────────
+
+  Model         : Qwen3.5 0.8B  [LAB_MODEL=qwen35-0.8b]
+                  unsloth/Qwen3.5-0.8B-GGUF  (~0.9 GB)
+                  primary  Qwen3.5-0.8B-Q4_K_M.gguf  (0.5 GB)
+                  compare  Qwen3.5-0.8B-UD-Q2_K_XL.gguf  (0.39 GB)
+                  chosen because: chosen with LAB_MODEL
+  Other option  : LAB_MODEL=gemma4-e2b  ->  Gemma 4 E2B, ~5.2 GB, needs 8.0 GB RAM
+  llama.cpp     : prebuilt release b10488  (llama-b10488-bin-ubuntu-x64.tar.gz)
+  GPU offload   : OFF -- no accelerator detected
+  source build  : CPU only  (bonus B1 -- not used by the base track)
+  Tracks open   : 01-measure, 02-serve, 03-integrate, bonus/sweeps
+────────────────────────────────────────────────────────────────
+
+Saved hardware.json -- every other track reads this.
+    (GitHub API unavailable: <urlopen error [Errno -3] Temporary failure in name resolution> -- using the built-in name table)
+==> llama-server already present: runtime/b10488/llama-b10488/llama-server
+    (re-fetch with --force)
+==> Model: Qwen3.5 0.8B  (LAB_MODEL=qwen35-0.8b)
+    https://huggingface.co/unsloth/Qwen3.5-0.8B-GGUF
+    Apache-2.0, not gated — no token, no license click-through.
+    Download size: ~0.9 GB
+    (other option: LAB_MODEL=gemma4-e2b -> Gemma 4 E2B, ~5.2 GB)
+    already present: models/Qwen3.5-0.8B-Q4_K_M.gguf
+    already present: models/Qwen3.5-0.8B-UD-Q2_K_XL.gguf
+
+==> Wrote models/active.json  (0.9 GB on disk)
+     0.50 GB  Qwen3.5-0.8B-Q4_K_M.gguf
+     0.39 GB  Qwen3.5-0.8B-UD-Q2_K_XL.gguf
+
+────────────────────────────────────────────────────────────────
+  1/3  Probing hardware
+────────────────────────────────────────────────────────────────
+
+────────────────────────────────────────────────────────────────
+  2/3  Fetching the llama.cpp runtime
+────────────────────────────────────────────────────────────────
+
+────────────────────────────────────────────────────────────────
+  3/3  Downloading Qwen3.5 0.8B (two quantizations, ~0.9 GB)
+────────────────────────────────────────────────────────────────
+
+────────────────────────────────────────────────────────────────
+  Setup complete
+────────────────────────────────────────────────────────────────
+  Next:
+    make bench      # track 01 - TTFT / TPOT / percentiles, both quants
+    make tune       # track 01 - find your best thread count (before/after)
+    make serve      # track 02 - OpenAI-compatible server + /metrics on :8080
+
+  Full walkthrough: docs/GUIDE.md
+
