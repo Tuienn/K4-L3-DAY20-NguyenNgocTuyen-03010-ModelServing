@@ -1,0 +1,94 @@
+{
+  "payload": {
+    "model": "local",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Define TTFT and TPOT in two short sentences. Explain which one measures prefill and which measures decode."
+      }
+    ],
+    "max_tokens": 96,
+    "temperature": 0,
+    "seed": 42
+  },
+  "results": [
+    {
+      "quant": "Q4_K_M",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "length",
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "**TTFT** stands for **Time-to-First-Fill**, which measures the time required to complete the initial data transfer from the server to the client's local storage.\n\n**TPOT** stands for **Time-to-First-Output**, which measures the time required to complete the final data transfer from the client's local storage to the server's display.\n\n**TTFT** measures **prefill** (the initial load of data), while **TPOT** measures"
+            }
+          }
+        ],
+        "created": 1791305596,
+        "model": "/home/tuienn/User/VinAI/Labs/2026-10-06/K4-L3-DAY20-NguyenNgocTuyen-03010-ModelServing/models/Qwen3.5-0.8B-Q4_K_M.gguf",
+        "system_fingerprint": "b10488-9d77fa172",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 96,
+          "prompt_tokens": 34,
+          "total_tokens": 130,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          }
+        },
+        "id": "chatcmpl-eolqoyOM9muwgBlVhBVsy47zmN0wUIZM",
+        "timings": {
+          "cache_n": 0,
+          "prompt_n": 34,
+          "prompt_ms": 233.733,
+          "prompt_per_token_ms": 6.8745,
+          "prompt_per_second": 145.46512473634445,
+          "predicted_n": 96,
+          "predicted_ms": 4280.615,
+          "predicted_per_token_ms": 45.05910526315789,
+          "predicted_per_second": 22.193072724363205
+        }
+      }
+    },
+    {
+      "quant": "UD-Q2_K_XL",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "length",
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "**TTFT** stands for **Time-to-Full** and measures the time required to **fill** the entire output string, often used in streaming or real-time processing.\n\n**TPOT** stands for **Time-to-Prefill** and measures the time required to **fill** the output string, often used in streaming or real-time processing.\n\n**TPOT** stands for **Time-to-Prefill** and measures the time required to **fill** the output"
+            }
+          }
+        ],
+        "created": 1791305603,
+        "model": "/home/tuienn/User/VinAI/Labs/2026-10-06/K4-L3-DAY20-NguyenNgocTuyen-03010-ModelServing/models/Qwen3.5-0.8B-UD-Q2_K_XL.gguf",
+        "system_fingerprint": "b10488-9d77fa172",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 96,
+          "prompt_tokens": 34,
+          "total_tokens": 130,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          }
+        },
+        "id": "chatcmpl-MTbPv9qrjyN1g26jvuVwoZYuK2trFh8E",
+        "timings": {
+          "cache_n": 0,
+          "prompt_n": 34,
+          "prompt_ms": 281.511,
+          "prompt_per_token_ms": 8.279735294117648,
+          "prompt_per_second": 120.77680801105463,
+          "predicted_n": 96,
+          "predicted_ms": 4862.049,
+          "predicted_per_token_ms": 51.17946315789474,
+          "predicted_per_second": 19.5390873271742
+        }
+      }
+    }
+  ]
+}

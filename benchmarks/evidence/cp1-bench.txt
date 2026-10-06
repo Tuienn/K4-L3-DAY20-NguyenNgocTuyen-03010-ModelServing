@@ -1,0 +1,60 @@
+
+────────────────────────────────────────────────────────────────
+  primary  (Q4_K_M)
+────────────────────────────────────────────────────────────────
+  model     : Qwen3.5-0.8B-Q4_K_M.gguf
+  threads   : 12   ngl: 0   ctx: 2048   max_tokens: 64
+  starting llama-server ...
+  ready in 2043 ms (model load + warm-up of the HTTP stack)
+   [ 1/10] ttft=  189.1ms  tpot= 45.1ms  e2e=  3029.0ms  out=64
+   [ 2/10] ttft=  163.0ms  tpot= 44.9ms  e2e=  1463.8ms  out=30
+   [ 3/10] ttft=  175.8ms  tpot= 45.8ms  e2e=  3063.6ms  out=64
+   [ 4/10] ttft=  203.5ms  tpot= 46.1ms  e2e=  3105.2ms  out=64
+   [ 5/10] ttft=  183.8ms  tpot= 61.0ms  e2e=  4024.2ms  out=64
+   [ 6/10] ttft=  359.5ms  tpot= 62.5ms  e2e=  4297.7ms  out=64
+   [ 7/10] ttft=  329.6ms  tpot= 61.9ms  e2e=  4228.0ms  out=64
+   [ 8/10] ttft=  300.8ms  tpot= 62.1ms  e2e=  4214.9ms  out=64
+   [ 9/10] ttft=  292.2ms  tpot= 61.0ms  e2e=  4136.5ms  out=64
+   [10/10] ttft=  352.9ms  tpot= 61.0ms  e2e=  4195.2ms  out=64
+
+────────────────────────────────────────────────────────────────
+  compare  (UD-Q2_K_XL)
+────────────────────────────────────────────────────────────────
+  model     : Qwen3.5-0.8B-UD-Q2_K_XL.gguf
+  threads   : 12   ngl: 0   ctx: 2048   max_tokens: 64
+  starting llama-server ...
+  ready in 2033 ms (model load + warm-up of the HTTP stack)
+   [ 1/10] ttft=  394.5ms  tpot= 59.0ms  e2e=  4108.7ms  out=64
+   [ 2/10] ttft=  409.5ms  tpot= 58.7ms  e2e=  4107.0ms  out=64
+   [ 3/10] ttft=  467.1ms  tpot= 57.6ms  e2e=  4093.0ms  out=64
+   [ 4/10] ttft=  492.2ms  tpot= 56.9ms  e2e=  4076.3ms  out=64
+   [ 5/10] ttft=  491.6ms  tpot= 57.1ms  e2e=  4088.7ms  out=64
+   [ 6/10] ttft=  421.4ms  tpot= 58.7ms  e2e=  4116.6ms  out=64
+   [ 7/10] ttft=  406.4ms  tpot= 56.4ms  e2e=  3958.2ms  out=64
+   [ 8/10] ttft=  360.6ms  tpot= 56.0ms  e2e=  3886.5ms  out=64
+   [ 9/10] ttft=  375.4ms  tpot= 57.4ms  e2e=  3990.8ms  out=64
+   [10/10] ttft=  434.2ms  tpot= 57.5ms  e2e=  4054.8ms  out=64
+
+# 01 - Measure: latency baseline
+
+Model `Qwen3.5 0.8B` · host `Linux-x86_64` · llama.cpp `b10488`
+Settings: `threads=12` `ngl=0` `ctx=2048`
+`max_tokens=64` · warm-up discarded
+Completed requests: `Q4_K_M` 10/10 · `UD-Q2_K_XL` 10/10
+
+| Quantization | Size (GB) | Load (ms) | TTFT P50/P95 (ms) | TPOT P50/P95 (ms) | E2E P50/P95/P99 (ms) | Decode (tok/s) |
+|:--|--:|--:|--:|--:|--:|--:|
+| Q4_K_M | 0.50 | 2043 | 204 / 360 | 61.0 / 62.5 | 4024 / 4298 / 4298 | 16.4 |
+| UD-Q2_K_XL | 0.39 | 2033 | 410 / 492 | 57.4 / 59.0 | 4076 / 4117 / 4117 | 17.4 |
+
+- **TTFT** = prefill. Short prompts keep it small; long-context RAG is where it explodes.
+- **TPOT** = per-output-token decode cost, bounded by memory bandwidth. `decode tok/s = 1000 / TPOT_p50`.
+- `UD-Q2_K_XL` decodes **1.06x faster** than `Q4_K_M` here, for 0.11 GB less on disk.
+
+## Your observation (required -- replace this line)
+
+_Is the smaller quantization worth it on your machine? Compare the numbers above,
+then judge the answer quality yourself: run `make serve` on each and ask the same
+question twice. Size and speed are measurable; usefulness is your call._
+
+==> Wrote benchmarks/01-quickstart-results.md
