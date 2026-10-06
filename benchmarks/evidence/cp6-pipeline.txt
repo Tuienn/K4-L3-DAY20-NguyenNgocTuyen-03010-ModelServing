@@ -1,0 +1,38 @@
+
+────────────────────────────────────────────────────────────────
+  03 - RAG pipeline
+────────────────────────────────────────────────────────────────
+  llama-server : http://localhost:8080
+  embeddings   : none (keyword overlap fallback)
+
+=== Why is goodput more useful than raw throughput?
+  contexts : [('goodput', 1.0), ('paged', 0.0), ('radix', 0.0)]
+  timings  : {'embed': 0.0, 'retrieve': 0.0, 'llm': 3700.0, 'total': 3700.1}
+  server   : prefill 151 tok / 697 ms, decode 64 tok / 2852 ms
+  answer   : Based on the context provided, **Goodput** is more useful than raw throughput because it **ignores SLOs (Service Level Objectives)** when calculating throughput at saturation.
+
+Here is the breakdown of why this makes Goodput superior:
+
+1.  **SLO Compliance**: The context states t
+
+=== What problem does PagedAttention actually solve?
+  contexts : [('paged', 1.0), ('radix', 0.0), ('disagg', 0.0)]
+  timings  : {'embed': 0.0, 'retrieve': 0.0, 'llm': 4454.7, 'total': 4454.8}
+  server   : prefill 114 tok / 563 ms, decode 64 tok / 3861 ms
+  answer   : PagedAttention solves the problem of **internal fragmentation in GPU memory** caused by storing the Key-Value (KV) cache in non-contiguous pages.
+
+By separating the KV cache into non-contiguous pages, the model avoids the wasted space that would occur if KV entries were stored co
+
+=== When does splitting prefill and decode help?
+  contexts : [('disagg', 2.0), ('radix', 1.0), ('batching', 1.0)]
+  timings  : {'embed': 0.0, 'retrieve': 0.1, 'llm': 6106.8, 'total': 6107.0}
+  server   : prefill 113 tok / 1338 ms, decode 64 tok / 4670 ms
+  answer   : Splitting prefill and decode helps when **prefill is compute-bound and decode is memory-bound**.
+
+The context explicitly states: "Disaggregated serving splits prefill and decode onto separate pools because prefill is compute-bound and decode is memory-bandwidth-bound." This indic
+
+  Mean over 3 queries (ms): {'embed': 0.0, 'retrieve': 0.0, 'llm': 4753.8, 'total': 4754.0}
+  Dominant stage: llm (100% of total)
+
+==> Wrote benchmarks/03-integration-results.md
+  Put these numbers in REFLECTION.md section 4 as well.

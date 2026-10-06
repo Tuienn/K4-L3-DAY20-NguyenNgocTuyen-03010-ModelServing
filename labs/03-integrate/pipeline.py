@@ -123,7 +123,7 @@ def call_llm(messages: list[dict], base: str) -> tuple[str, float, dict]:
     try:
         r = httpx.post(f"{base}/v1/chat/completions",
                        json={"model": "local", "messages": messages,
-                             "max_tokens": 200, "temperature": 0.3},
+                             "max_tokens": labkit.env_int("LAB_PIPELINE_MAX_TOKENS", 200), "temperature": 0.3},
                        timeout=300.0)
         r.raise_for_status()
     except httpx.HTTPError as exc:
@@ -205,6 +205,8 @@ def main() -> int:
 
 Host `{labkit.host_tag()}` · llama.cpp `{labkit.LLAMA_CPP_BUILD}` ·
 retrieval backend: **{backend}** · {len(results)} queries
+Generation limit: `{labkit.env_int('LAB_PIPELINE_MAX_TOKENS', 200)}` tokens per query;
+temperature: `0.3`. Answers may be truncated at this limit.
 
 {per_query}
 
